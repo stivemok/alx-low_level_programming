@@ -2,9 +2,11 @@
 #define VARIADIC_FNS
 
 #include <stdarg.h>
-
-#define VALIDTYPESCONDITIONAL(i) (format[i] == 'c' || format[i] == 'i' || format[i] == 'f' || format[i] == 's')
-
+/**
+ * struct validTypes - key for pik
+ * @f: ...
+ * @valid: ...
+ */
 typedef struct validTypes
 {
 	char *valid;
