@@ -1,45 +1,66 @@
-#include <stdio.h>
 #include "lists.h"
 #include <stdlib.h>
 
 /**
- * free_listint_safe - A function that frees a list
- * @h: A pointer listint_t structure
- * Return: The size of the list that was free'd
+ * find_listint_loop_fl - finds a loop in a linked list
+ *
+ * @head: linked list to search
+ *
+ * Return: address of node where loop starts/returns, NULL if no loop
  */
-size_t free_listint_safe(listint_t **h)
+listint_t *find_listint_loop_fl(listint_t *head)
 {
-	size_t counter = 0;
-	listint_t *temp;
+	listint_t *ptr, *end;
 
-	temp = *h;
-	while (temp)
+	if (head == NULL)
+		return (NULL);
+
+	for (end = head->next; end != NULL; end = end->next)
 	{
-		temp = *h;
-		temp = temp->next;
-		free_list(temp);
-		counter++;
+		if (end == end->next)
+			return (end);
+		for (ptr = head; ptr != end; ptr = ptr->next)
+			if (ptr == end->next)
+				return (end->next);
 	}
-	*h = NULL;
-
-	return (counter);
+	return (NULL);
 }
 
 /**
- * free_list - A function that frees a listint_t recursively
- * @head: A pointer to the listint_t structure
- * Return: Nothing
+ * free_listint_safe - frees a listint list, even if it has a loop
+ *
+ * @h: head of list
+ *
+ * Return: number of nodes freed
  */
-void free_list(listint_t *head)
+size_t free_listint_safe(listint_t **h)
 {
-	listint_t *temp;
+	listint_t *next, *loopnode;
+	size_t len;
+	int loop = 1;
 
-	if (head)
+	if (h == NULL || *h == NULL)
+		return (0);
+
+	loopnode = find_listint_loop_fl(*h);
+	for (len = 0; (*h != loopnode || loop) && *h != NULL; *h = next)
 	{
-		temp = head;
-		temp = temp->next;
-		free(temp);
-		free_list(temp);
+		len++;
+		next = (*h)->next;
+		if (*h == loopnode && loop)
+		{
+			if (loopnode == loopnode->next)
+			{
+				free(*h);
+				break;
+			}
+			len++;
+			next = next->next;
+			free((*h)->next);
+			loop = 0;
+		}
+		free(*h);
 	}
-	free(head);
+	*h = NULL;
+	return (len);
 }
