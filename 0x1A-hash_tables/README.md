@@ -204,7 +204,7 @@ If you want to test for collisions, here are some strings that collide using the
 
    * **dram** collides with **vivency**
 
-###  >>> ht['betty'] - mandatory
+### 4. >>> ht['betty'] - mandatory
 
 Write a function that retrieves a value associated with a key.
 
@@ -236,3 +236,67 @@ c:isfun
 
 javascript:(null)
 
+### 5. >>> print(ht) - mandatory
+
+Write a function that prints a hash table.
+
+      * Prototype: void hash_table_print(const hash_table_t *ht);
+      	* where ht is the hash table
+
+      * You should print the key/value in the order that they appear in the array of hash table
+
+      	*Order: array, list
+
+       * Format: see example
+
+       * If ht is NULL, don’t print anything
+
+julien@ubuntu:~/0x1A. Hash tables$ gcc -Wall -pedantic -Werror -Wextra -std=gnu89 5-main.c 0-hash_table_create.c 1-djb2.c 2-key_index.c 3-hash_table_set.c 4-hash_table_get.c 5-hash_table_print.c -o f
+
+julien@ubuntu:~/0x1A. Hash tables$ ./f
+
+{}
+
+{'Betty': 'Cool', 'python': 'awesome', 'Bob': 'and Kris love asm', '98': 'Battery Street', 'N': 'queens', 'c': 'fun', 'Asterix': 'Obelix'}
+
+### 6. >>> del ht - mandatory
+
+Write a function that deletes a hash table.
+
+      * Prototype: void hash_table_delete(hash_table_t *ht);
+      	* where ht is the hash table
+
+julien@ubuntu:~/0x1A. Hash tables$ gcc -Wall -pedantic -Werror -Wextra 6-main.c 0-hash_table_create.c 1-djb2.c 2-key_index.c 3-hash_table_set.c 4-hash_table_get.c 5-hash_table_print.c 6-hash_table_delete.c -o g
+
+julien@ubuntu:~/0x1A. Hash tables$ valgrind ./g
+
+==6621== Memcheck, a memory error detector
+
+==6621== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+
+==6621== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright inf
+o
+
+==6621== Command: ./g
+
+==6621==
+
+{'Betty': 'Cool', 'mentioner': 'Bob', 'hetairas': 'Bob Z Chu', 'python': 'awesome', 'Bob': 'and Kris love asm', '98': 'Battery Street', 'N': 'queens', 'c': 'fun', 'Tim': 'Britton', 'Asterix': 'Obelix'}
+
+==6621==
+
+==6621== HEAP SUMMARY:
+
+==6621==     in use at exit: 0 bytes in 0 blocks
+
+==6621==   total heap usage: 37 allocs, 37 frees, 8,646 bytes allocated
+
+==6621==
+
+==6621== All heap blocks were freed -- no leaks are possible
+
+==6621==
+
+==6621== For counts of detected and suppressed errors, rerun with: -v
+
+==6621== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
