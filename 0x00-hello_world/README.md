@@ -10,7 +10,7 @@
 
    [* Why C Programming Is Awesome](https://www.youtube.com/watch?v=smGalmxPVYc)
 
-   [* Learning to program in C part 1](https://www.youtube.com/watch?v=rk2fK2IIiiQ
+   [* Learning to program in C part 1](https://www.youtube.com/watch?v=rk2fK2IIiiQ)
 
    [* Learning to program in C part 2](https://www.youtube.com/watch?v=FwpP_MsZWnU)
 
@@ -105,16 +105,17 @@ cd into the Betty directory
 Install the linter with sudo ./install.sh
 
 emacs or vi a new file called betty, and copy the script below:
+
 ----
 #!/bin/bash
 
-# Simply a wrapper script to keep you from having to use betty-style
+/* Simply a wrapper script to keep you from having to use betty-style
 
-# and betty-doc separately on every item.
+ and betty-doc separately on every item.
 
-# Originally by Tim Britton (@wintermanc3r), multiargument added by
+ Originally by Tim Britton (@wintermanc3r), multiargument added by
 
-# Larry Madeo (@hillmonkey)
+ Larry Madeo (@hillmonkey)*/
 
 BIN_PATH="/usr/local/bin"
 
@@ -149,7 +150,6 @@ You can now type betty <filename> to run the Betty linter!
 
 ### 0. Preprocessor - mandatory
 
-
 Write a script that runs a C file through the preprocessor and save the result into another file.
 
       * The C file name will be saved in the variable $CFILE
@@ -162,12 +162,11 @@ julien@ubuntu:~/c/0x00$ ./0-preprocessor
 
 julien@ubuntu:~/c/0x00$ tail c
 
-# 942 "/usr/include/stdio.h" 3 4
+ 942 "/usr/include/stdio.h" 3 4
 
-# 2 "main.c" 2
+ 2 "main.c" 2
 
-
-# 3 "main.c"
+ 3 "main.c"
 
 int main(void)
 
@@ -176,6 +175,7 @@ int main(void)
 return (0);
 
 }
+
 ----
 
 ### 1. Compiler - mandatory
@@ -187,14 +187,21 @@ Write a script that compiles a C file but does not link.
       * The output file should be named the same as the C file, but with the extension .o instead of .c.
 
       	*  Example: if the C file is main.c, the output file should be main.o
+
 ----
-julien@ubuntu:~/c/0x00$ ./1-compiler 
+julien@ubuntu:~/c/0x00$ ./1-compiler
+
 julien@ubuntu:~/c/0x00$ ls
+
 0-preprocessor  1-compiler   c            main.o
+
 Makefile               100-intel      main.c  main.s
+
 julien@ubuntu:~/c/0x00$ cat -v main.o | head
+
 ^?ELF^B^A^A^@^@^@^@^@^@^@^@^@^A^@>^@^A^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^P^B^@^@^@^@^@^@^@^@^@^@@^@^@^@^@^@@^@^K^@^H^@UHM-^IM-eM-8^@^@^@^@]M-C^@GCC: (Ubuntu 5.4.0-6ubuntu1~16.04.2) 5.4.0 20160609^@^T^@^@^@^@^@^@^@^AzR^@^Ax^P^A^[^L^G^HM-^P^A^@^@^\^@^@^@^\^@^@^@^@^@^@^@^K^@^@^@^@A^N^PM-^F^BC^M^FF^L^G^H^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^A^@^@^@^D^@M-qM-^?^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^C^@^A^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^C^@^B^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^C^@^C^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^C^@^E^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^C^@^F^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^C^@^D^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^H^@^@^@^R^@^A^@^@^@^@^@^@^@^@^@^K^@^@^@^@^@^@^@^@main.c^@main^@^@^@^@ ^@^@^@^@^@^@^@^B^@^@^@^B^@^@^@^@^@^@^@^@^@^@^@^@.symtab^@.strtab^@.shstrtab^@.text^@.data^@.bss^@.comment^@.note.GNU-stack^@.rela.eh_frame^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^[^@^@^@^A^@^@^@^F^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@@^@^@^@^@^@^@^@^K^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^A^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@!^@^@^@^A^@^@^@^C^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@K^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^A^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@'^@^@^@^H^@^@^@^C^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@K^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^A^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@,^@^@^@^A^@^@^@0^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@K^@^@^@^@^@^@^@5^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^A^@^@^@^@^@^@^@^A^@^@^@^@^@^@^@5^@^@^@^A^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@M-^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^A^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@J^@^@^@^A^@^@^@^B^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@M-^@^@^@^@^@^@^@^@8^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^H^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@E^@^@^@^D^@^@^@@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@M- ^A^@^@^@^@^@^@^X^@^@^@^@^@^@^@    ^@^@^@^F^@^@^@^H^@^@^@^@^@^@^@^X^@^@^@^@^@^@^@^Q^@^@^@^C^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@M-8^A^@^@^@^@^@^@T^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^A^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^A^@^@^@^B^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@M-8^@^@^@^@^@^@^@M-X^@^@^@^@^@^@^@
 ^@^@^@^H^@^@^@^H^@^@^@^@^@^@^@^X^@^@^@^@^@^@^@  ^@^@^@^C^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@M-^P^A^@^@^@^@^@^@^M^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@^A^@^@^@^@^@^@^@^@^@^@^@^@^@^@^@julien@ubuntu:~/c/0x00$
+
 ----
 
 2. Assembler - mandatory
@@ -207,13 +214,13 @@ Write a script that generates the assembly code of a C code and save it in an ou
 
       	* Example: if the C file is main.c, the output file should be main.s
 
-3. Name - mandatory
+### 3. Name - mandatory
 
 Write a script that compiles a C file and creates an executable named cisfun.
 
       * The C file name will be saved in the variable $CFILE
 
-4. Hello, puts - mandatory
+### 4. Hello, puts - mandatory
 
 Write a C program that prints exactly "Programming is like building a multilingual puzzle, followed by a new line.
 
@@ -235,7 +242,7 @@ Write a C program that prints exactly with proper grammar, but the outcome is a 
 
       * Your program should compile without warning when using the -Wall gcc option
 
-6. Size is not grandeur, and territory does not make a nation - mandatory
+### 6. Size is not grandeur, and territory does not make a nation - mandatory
 
 Write a C program that prints the size of various types on the computer it is compiled and run on.
 
@@ -247,7 +254,7 @@ Write a C program that prints the size of various types on the computer it is co
 
       * You might have to install the package libc6-dev-i386 on your Linux to test the -m32 gcc option
 
-7. Intel - advanced
+### 7. Intel - advanced
 
 Write a script that generates the assembly code (Intel syntax) of a C code and save it in an output file.
 
